@@ -5,6 +5,7 @@ console .log( '... initializing ...' )
 
 let process = requireTemplate `process` 
 let cp = requireTemplate `child_process` 
+// File system < nodejs https://nodejs.org/api/fs.html 
 let fs = requireTemplate `fs` 
 
 consoleTemplate `require ..d 가힣 ` 
