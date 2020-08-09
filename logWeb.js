@@ -9,25 +9,36 @@ let fs = requireTemplate `fs`
 
 consoleTemplate `require ..d 가힣 ` 
 
-let now = new Date() 
-
-// DateTimeFormat < Intl https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat 
-let dateFormat = new class { 
-	dateStyle = 'short' 
-	} // -- {} // -- dateFormat 
-let timeFormat = new class { 
-	timeStyle = 'medium' 
-	// hour12 = false 
-	hourCycle = 'h23' 
-	} // -- {} // -- timeFormat 
-// formatToParts < dateTimeFormat < Intl https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/formatToParts 
-
 let locale = 'ko-kr' 
 
-let nowDateParts = new Intl .DateTimeFormat( locale, dateFormat ) .formatToParts( now ) 
-let nowTimeParts = new Intl .DateTimeFormat( locale, timeFormat ) .formatToParts( now ) 
+let now = new Date() 
+let nowDateParts = yymmdd( now ) 
+let nowTimeParts = hhmmss( now ) 
 
 console .log( nowDateParts, nowTimeParts ) 
+
+// DateTimeFormat < Intl https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat 
+// formatToParts < dateTimeFormat < Intl https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/formatToParts 
+
+function yymmdd( dateValue ) { 
+	let dateFormat = new class { 
+		dateStyle = 'short' 
+		} // -- {} // -- dateFormat 
+	let nowDateParts = new Intl .DateTimeFormat( locale, dateFormat ) .formatToParts( now ) 
+	
+	return nowDateParts 
+	} // -- yymmdd() 
+
+function hhmmss( timeValue ) { 
+	let timeFormat = new class { 
+		timeStyle = 'medium' 
+		// hour12 = false 
+		hourCycle = 'h23' 
+		} // -- {} // -- timeFormat 
+	let nowTimeParts = new Intl .DateTimeFormat( locale, timeFormat ) .formatToParts( now ) 
+	
+	return nowTimeParts 
+	} // -- hhmmsss() 
 
 // exit < process < nodejs https://nodejs.org/api/process.html#process_process_exit_code 
 // process .exit() 
