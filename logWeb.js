@@ -25,8 +25,25 @@ function yymmdd( dateValue ) {
 		dateStyle = 'short' 
 		} // -- {} // -- dateFormat 
 	let nowDateParts = new Intl .DateTimeFormat( locale, dateFormat ) .formatToParts( now ) 
+	let y, m, d 
 	
-	return nowDateParts 
+	for ( let { type, value } of nowDateParts ) { 
+		switch( true ) { 
+			case type === 'year' : 
+				y = value 
+				break 
+			case type === 'month' : 
+				m = value 
+				break 
+			case type === 'day' : 
+				d = value 
+				break 
+			} // -- switch true 
+		} // -- for of nowDateParts 
+	let twos = v => `00${ v }` .slice( -2 ) 
+	let [ yy, mm, dd ] = [ y, m, d ] .map( twos ) 
+	
+	return `${ yy }${ mm }${ dd }` 
 	} // -- yymmdd() 
 
 function hhmmss( timeValue ) { 
@@ -36,8 +53,25 @@ function hhmmss( timeValue ) {
 		hourCycle = 'h23' 
 		} // -- {} // -- timeFormat 
 	let nowTimeParts = new Intl .DateTimeFormat( locale, timeFormat ) .formatToParts( now ) 
+	let h, m, s 
 	
-	return nowTimeParts 
+	for ( let { type, value } of nowTimeParts ) { 
+		switch( true ) { 
+			case type === 'hour' : 
+				h = value 
+				break 
+			case type === 'minute' : 
+				m = value 
+				break 
+			case type === 'second' : 
+				s = value 
+				break 
+			} // -- switch true 
+		} // -- for of nowTimeParts 
+	let twos = v => `00${ v }` .slice( -2 ) 
+	let [ hh, mm, ss ] = [ h, m, s ] .map( twos ) 
+	
+	return `${ hh }${ mm }${ ss }` 
 	} // -- hhmmsss() 
 
 // exit < process < nodejs https://nodejs.org/api/process.html#process_process_exit_code 
