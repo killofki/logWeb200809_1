@@ -1,13 +1,23 @@
 { 
 /// 
 
-consoleTemplate `require ..ing 가나 ` 
+console .log( '... initializing ...' ) 
 
 let process = requireTemplate `process` 
 let cp = requireTemplate `child_process` 
 let fs = requireTemplate `fs` 
 
+// TextEncoder https://developer.mozilla.org/en-US/docs/Web/API/TextEncoder 
+// TextDecoder https://developer.mozilla.org/en-US/docs/Web/API/TextDecoder 
+let encoder = new TextEncoder() 
+let decoder = new TextDecoder( 'euc-kr' ) 
+
+console .log( decoder .encoding ) 
+console .log( decoder .decoding ) 
+
 consoleTemplate `require ..d 가힣 ` 
+
+console .log( decoder .decoding ) 
 
 let locale = 'ko-kr' 
 
@@ -92,7 +102,10 @@ function execTemplate( ... ar ) {
 
 function consoleTemplate( ... ar ) { 
 	let t = rawValue( ... ar ) 
-	console .log( t ) 
+	let et = encoder .encode( t ) 
+	let dt = decoder .decode( et ) 
+	console .log( et ) 
+	console .log( t, dt, encodeURI( dt ) ) 
 	} // -- consoleTemplate() 
 
 function requireTemplate( ... ar ) { 
