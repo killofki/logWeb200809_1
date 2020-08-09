@@ -17,6 +17,14 @@ let nowTimeParts = hhmmss( now )
 
 console .log( nowDateParts, nowTimeParts ) 
 
+// exit < process < nodejs https://nodejs.org/api/process.html#process_process_exit_code 
+// process .exit() 
+
+/// exec < child_process < nodejs https://nodejs.org/api/child_process.html#child_process_child_process_exec_command_options_callback 
+// execTemplate `start http://google.com` 
+
+// .. functions .. 
+
 // DateTimeFormat < Intl https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat 
 // formatToParts < dateTimeFormat < Intl https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/formatToParts 
 
@@ -73,14 +81,6 @@ function hhmmss( timeValue ) {
 	
 	return `${ hh }${ mm }${ ss }` 
 	} // -- hhmmsss() 
-
-// exit < process < nodejs https://nodejs.org/api/process.html#process_process_exit_code 
-// process .exit() 
-
-/// exec < child_process < nodejs https://nodejs.org/api/child_process.html#child_process_child_process_exec_command_options_callback 
-// execTemplate `start http://google.com` 
-
-// .. functions .. 
 
 function execTemplate( ... ar ) { 
 	// with cp 
