@@ -28,7 +28,6 @@ let locale = 'ko-kr'
 let nowDate = new Intl .DateTimeFormat( locale, dateFormat ) .formatToParts( now ) 
 let nowTime = new Intl .DateTimeFormat( locale, timeFormat ) .formatToParts( now ) 
 
-console .log( now, nowISO, nowLocal ) 
 console .log( nowDate, nowTime ) 
 
 // exit < process < nodejs https://nodejs.org/api/process.html#process_process_exit_code 
