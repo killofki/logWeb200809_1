@@ -24,7 +24,7 @@ let publishingFilename = `logWeb${ publishingDate }_${ publishingTime }.txt`
 /// openSync < fs < nodejs 
 let openLogFile = pfs .open( publishingFilename, 'a+' ) 
 
-console .log( openLogFile ) 
+console .log({ openLogFile }) 
 
 openLogFile 
 	.then( handle => { 
