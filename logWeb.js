@@ -27,12 +27,12 @@ let openLogFile = pfs .open( publishingFilename, 'a+' )
 console .log( openLogFile ) 
 
 openLogFile 
-	.then( ( ... ar ) => { 
-		console .log( 'opened', ... ar ) 
+	.then( handle => { 
+		console .log( 'opened', handle ) 
 		process .exit() 
 		} ) 
-	.catch( ( ... ar ) => { 
-		console .log( 'error', ... ar ) 
+	.catch( err => { 
+		console .log( 'error', err ) 
 		process .exit() 
 		} ) 
 
