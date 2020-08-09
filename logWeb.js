@@ -9,6 +9,11 @@ let fs = requireTemplate `fs`
 
 consoleTemplate `require ..d` 
 
+let now = new Date() 
+let nowISO = now .toISOString() 
+
+console .log( now, nowISO ) 
+
 // process .exit() 
 
 // execTemplate `start http://google.com` 
