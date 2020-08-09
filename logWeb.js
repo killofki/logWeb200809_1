@@ -19,7 +19,7 @@ let publishingTime = hhmmss( now )
 
 console .log({ publishingDate, publishingTime }) 
 
-let publishingFilename = `logWeb${ publishingDate }_${ publishingTime }` 
+let publishingFilename = `logWeb${ publishingDate }_${ publishingTime }.txt` 
 
 /// openSync < fs < nodejs 
 let openLogFile = pfs .open( publishingFilename, 'a+' ) 
