@@ -28,6 +28,7 @@ console .log( openLogFile )
 
 openLogFile 
 	.then( handle => { 
+		console .log({ publishingFilename }) 
 		console .log( 'opened', handle ) 
 		process .exit() 
 		} ) 
