@@ -19,7 +19,8 @@ let dateFormat = new class {
 	} // -- {} // -- dateFormat 
 let timeFormat = new class { 
 	timeStyle = 'medium' 
-	hour12 = false 
+	// hour12 = false 
+	hourCycle = 'h23' 
 	} // -- {} // -- timeFormat 
 // formatToParts < dateTimeFormat < Intl https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/formatToParts 
 
