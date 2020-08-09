@@ -1,21 +1,42 @@
 { 
 /// 
 
-consoleTemplate `require ..ing` 
+consoleTemplate `require ..ing 가나 ` 
 
 let process = requireTemplate `process` 
 let cp = requireTemplate `child_process` 
 let fs = requireTemplate `fs` 
 
-consoleTemplate `require ..d` 
+consoleTemplate `require ..d 가힣 ` 
 
 let now = new Date() 
 let nowISO = now .toISOString() 
+let nowLocal = now .toLocaleString() 
 
-console .log( now, nowISO ) 
+// DateTimeFormat < Intl https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat 
+let dateFormat = new class { 
+	dateStyle = 'medium' 
+	year = '2-digit' 
+	month = '2-digit' 
+	day = '2-digit' 
+	} // -- {} // -- dateFormat 
+let timeFormat = new class { 
+	timeStyle = 'medium' 
+	hour12 = false 
+	hour = 'numeric' 
+	minute = 'numeric' 
+	second = 'numeric' 
+	} // -- {} // -- timeFormat 
+let nowDate = new Intl .DateTimeFormat(  dateFormat ) .format( now ) 
+let nowTime = new Intl .DateTimeFormat( 'ko-kr', timeFormat ) .format( now ) 
 
+console .log( now, nowISO, nowLocal ) 
+console .log( nowDate, nowTime ) 
+
+// exit < process < nodejs https://nodejs.org/api/process.html#process_process_exit_code 
 // process .exit() 
 
+/// exec < child_process < nodejs https://nodejs.org/api/child_process.html#child_process_child_process_exec_command_options_callback 
 // execTemplate `start http://google.com` 
 
 // .. functions .. 
