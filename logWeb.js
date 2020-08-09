@@ -24,10 +24,10 @@ let timeFormat = new class {
 
 let locale = 'ko-kr' 
 
-let nowDate = new Intl .DateTimeFormat( locale, dateFormat ) .formatToParts( now ) 
-let nowTime = new Intl .DateTimeFormat( locale, timeFormat ) .formatToParts( now ) 
+let nowDateParts = new Intl .DateTimeFormat( locale, dateFormat ) .formatToParts( now ) 
+let nowTimeParts = new Intl .DateTimeFormat( locale, timeFormat ) .formatToParts( now ) 
 
-console .log( nowDate, nowTime ) 
+console .log( nowDateParts, nowTimeParts ) 
 
 // exit < process < nodejs https://nodejs.org/api/process.html#process_process_exit_code 
 // process .exit() 
