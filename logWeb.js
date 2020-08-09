@@ -17,6 +17,8 @@ let publishingTime = hhmmss( now )
 
 console .log({ publishingDate, publishingTime }) 
 
+let publishingFilenmae = `logWeb${ publishingDate }_${ publishingTime }` 
+
 // exit < process < nodejs https://nodejs.org/api/process.html#process_process_exit_code 
 // process .exit() 
 
