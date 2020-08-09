@@ -10,8 +10,6 @@ let fs = requireTemplate `fs`
 consoleTemplate `require ..d 가힣 ` 
 
 let now = new Date() 
-let nowISO = now .toISOString() 
-let nowLocal = now .toLocaleString() 
 
 // DateTimeFormat < Intl https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat 
 let dateFormat = new class { 
