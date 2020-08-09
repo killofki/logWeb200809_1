@@ -22,8 +22,11 @@ let timeFormat = new class {
 	hour12 = false 
 	} // -- {} // -- timeFormat 
 // formatToParts < dateTimeFormat < Intl https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/formatToParts 
-let nowDate = new Intl .DateTimeFormat( dateFormat ) .formatToParts( now ) 
-let nowTime = new Intl .DateTimeFormat( 'ko-kr', timeFormat ) .formatToParts( now ) 
+
+let locale = 'ko-kr' 
+
+let nowDate = new Intl .DateTimeFormat( locale, dateFormat ) .formatToParts( now ) 
+let nowTime = new Intl .DateTimeFormat( locale, timeFormat ) .formatToParts( now ) 
 
 console .log( now, nowISO, nowLocal ) 
 console .log( nowDate, nowTime ) 
