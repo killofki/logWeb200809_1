@@ -12,10 +12,10 @@ consoleTemplate `require ..d 가힣 `
 let locale = 'ko-kr' 
 
 let now = new Date() 
-let nowDateParts = yymmdd( now ) 
-let nowTimeParts = hhmmss( now ) 
+let publishingDate = yymmdd( now ) 
+let publishingTime = hhmmss( now ) 
 
-console .log( nowDateParts, nowTimeParts ) 
+console .log({ publishingDate, publishingTime }) 
 
 // exit < process < nodejs https://nodejs.org/api/process.html#process_process_exit_code 
 // process .exit() 
