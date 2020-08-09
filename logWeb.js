@@ -9,7 +9,15 @@ let fs = requireTemplate `fs`
 
 consoleTemplate `require ..d` 
 
+// execTemplate `start http://google.com` 
+
 // .. functions .. 
+
+function execTemplate( ... ar ) { 
+	// with cp 
+	let command = rawValue( ... ar ) 
+	cp .exec( command ) 
+	} // -- execTemplate() 
 
 function consoleTemplate( ... ar ) { 
 	let t = rawValue( ... ar ) 
