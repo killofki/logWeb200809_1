@@ -9,6 +9,8 @@ let fs = requireTemplate `fs`
 
 consoleTemplate `require ..d` 
 
+// process .exit() 
+
 // execTemplate `start http://google.com` 
 
 // .. functions .. 
