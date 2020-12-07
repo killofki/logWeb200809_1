@@ -4,7 +4,7 @@
 console .log( '... initializing ...' ) 
 
 let process = requireTemplate `process` 
-let cp = requireTemplate `child_process` 
+let child_process = requireTemplate `child_process` 
 // File system < nodejs https://nodejs.org/api/fs.html 
 let fs = requireTemplate `fs` 
 let pfs = fs .promises 
@@ -86,9 +86,9 @@ function hhmmss( timeValue ) {
 	} // -- hhmmsss() 
 
 function execTemplate( ... ar ) { 
-	// with cp 
+	// with child_process 
 	let command = rawValue( ... ar ) 
-	cp .exec( command ) 
+	child_process .exec( command ) 
 	} // -- execTemplate() 
 
 function consoleTemplate( ... ar ) { 
