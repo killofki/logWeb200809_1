@@ -113,10 +113,10 @@ function execTemplate( ... ar ) {
 
 function consoleTemplate( ... ar ) { 
 	let t = rawValue( ... ar ) 
-	console .log( t, encodeURI( t ) ) 
+	console .log( t, encodeURI( t, { encoding : 'binary' } ) ) 
 	let ec = encode( t, 'euc-kr' ) 
 	
-	let dc = escape( ec ) 
+	let dc = ec .toString `binary` 
 	console .log( ec, dc, '!' ) 
 	} // -- consoleTemplate() 
 
