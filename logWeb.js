@@ -49,6 +49,7 @@ openLogFile
 // formatToParts < dateTimeFormat < Intl https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/formatToParts 
 
 function getParsedDate( dateValue, dateFormat ) { 
+	// with locale 
 	let nowDateParts 
 		= new Intl .DateTimeFormat( locale, dateFormat ) 
 		.formatToParts( dateValue ) 
