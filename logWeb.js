@@ -53,11 +53,8 @@ function getParsedDate( dateValue, dateFormat ) {
 		= new Intl .DateTimeFormat( locale, dateFormat ) 
 		.formatToParts( dateValue ) 
 		// -- nowDateParts 
-	let reducedDate 
-		= Object .assign( ... nowDateParts .map( ({ type, value }) => 
-			({ [ type ] : value }) 
-			) ) // -- () // -- map // -- assign 
-		// -- reducedDate 
+	let typedValue = ({ type, value }) => ({ [ type ] : value }) 
+	let reducedDate = Object .assign( ... nowDateParts .map( typedValue ) ) 
 	
 	return reducedDate 
 	} // -- yymmdd() 
