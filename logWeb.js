@@ -75,24 +75,19 @@ function hhmmss( timeValue ) {
 		// hour12 = false 
 		hourCycle = 'h23' 
 		} // -- {} // -- timeFormat 
-	let nowTimeParts = new Intl .DateTimeFormat( locale, timeFormat ) .formatToParts( now ) 
-	let h, m, s 
+	let nowTimeParts 
+		= new Intl .DateTimeFormat( locale, timeFormat ) 
+		.formatToParts( now ) 
+		// -- nowTimeParts 
+	let reducedTime 
+		= Object .assign( ... nowTimeParts .map( ({ type, value }) => 
+			({ [ type ] : value }) 
+			) ) // -- () // -- map // -- assign 
+		// -- reducedTime 
+	let { hour, minute, second } = reducedTime 
 	
-	for ( let { type, value } of nowTimeParts ) { 
-		switch( true ) { 
-			case type === 'hour' : 
-				h = value 
-				break 
-			case type === 'minute' : 
-				m = value 
-				break 
-			case type === 'second' : 
-				s = value 
-				break 
-			} // -- switch true 
-		} // -- for of nowTimeParts 
 	let twos = v => `00${ v }` .slice( -2 ) 
-	let [ hh, mm, ss ] = [ h, m, s ] .map( twos ) 
+	let [ hh, mm, ss ] = [ hour, minute, second ] .map( twos ) 
 	
 	return `${ hh }${ mm }${ ss }` 
 	} // -- hhmmsss() 
