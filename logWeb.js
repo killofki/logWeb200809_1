@@ -31,11 +31,11 @@ openLogFile
 		console .log({ publishingFilename }) 
 		console .log( 'opened', handle ) 
 		process .exit() 
-		} ) 
+		} ) // -- () // -- then 
 	.catch( err => { 
 		console .log( 'error', err ) 
 		process .exit() 
-		} ) 
+		} ) // -- () // -- then 
 
 // exit < process < nodejs https://nodejs.org/api/process.html#process_process_exit_code 
 // process .exit() 
