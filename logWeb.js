@@ -1,6 +1,9 @@
 { 
 /// 
 
+let iconv = requireTemplate `iconv-lite` 
+let { encode, decode } = iconv 
+
 console .log( '... initializing ...' ) 
 
 let process = requireTemplate `process` 
@@ -9,7 +12,7 @@ let cp = requireTemplate `child_process`
 let fs = requireTemplate `fs` 
 let pfs = fs .promises 
 
-consoleTemplate `require ..d 가힣 ` 
+consoleTemplate `require ..d 가힣 가 나 다 ` 
 
 let locale = 'ko-kr' 
 
@@ -110,7 +113,11 @@ function execTemplate( ... ar ) {
 
 function consoleTemplate( ... ar ) { 
 	let t = rawValue( ... ar ) 
-	console .log( t ) 
+	console .log( t, encodeURI( t ) ) 
+	let ec = encode( t, 'euc-kr' ) 
+	
+	let dc = escape( ec ) 
+	console .log( ec, dc, '!' ) 
 	} // -- consoleTemplate() 
 
 function requireTemplate( ... ar ) { 
