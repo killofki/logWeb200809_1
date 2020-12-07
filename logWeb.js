@@ -52,24 +52,19 @@ function yymmdd( dateValue ) {
 	let dateFormat = new class { 
 		dateStyle = 'short' 
 		} // -- {} // -- dateFormat 
-	let nowDateParts = new Intl .DateTimeFormat( locale, dateFormat ) .formatToParts( now ) 
-	let y, m, d 
+	let nowDateParts 
+		= new Intl .DateTimeFormat( locale, dateFormat ) 
+		.formatToParts( now ) 
+		// -- nowDateParts 
+	let reducedDate 
+		= Object .assign( ... nowDateParts .map( ({ type, value }) => 
+			({ [ type ] : value }) 
+			) ) // -- () // -- map // -- assign 
+		// -- reduceDate 
+	let { year, month, day } = reducedDate 
 	
-	for ( let { type, value } of nowDateParts ) { 
-		switch( true ) { 
-			case type === 'year' : 
-				y = value 
-				break 
-			case type === 'month' : 
-				m = value 
-				break 
-			case type === 'day' : 
-				d = value 
-				break 
-			} // -- switch true 
-		} // -- for of nowDateParts 
 	let twos = v => `00${ v }` .slice( -2 ) 
-	let [ yy, mm, dd ] = [ y, m, d ] .map( twos ) 
+	let [ yy, mm, dd ] = [ year, month, day ] .map( twos ) 
 	
 	return `${ yy }${ mm }${ dd }` 
 	} // -- yymmdd() 
