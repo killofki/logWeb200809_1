@@ -1,9 +1,6 @@
 { 
 /// 
 
-let iconv = requireTemplate `iconv-lite` 
-let { encode, decode } = iconv 
-
 console .log( '... initializing ...' ) 
 
 let process = requireTemplate `process` 
@@ -113,11 +110,7 @@ function execTemplate( ... ar ) {
 
 function consoleTemplate( ... ar ) { 
 	let t = rawValue( ... ar ) 
-	console .log( t, encodeURI( t ) ) 
-	let ec = encode( t, 'euc-kr' ) 
-	
-	let dc = ec .toString `binary` 
-	console .log( ec, dc, '!' ) 
+	console .log( t ) 
 	} // -- consoleTemplate() 
 
 function requireTemplate( ... ar ) { 
