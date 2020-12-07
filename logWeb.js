@@ -111,6 +111,7 @@ function execTemplate( ... ar ) {
 function consoleTemplate( ... ar ) { 
 	let t = rawValue( ... ar ) 
 	console .log( t ) 
+	// chcp 65001 on cmd https://stackoverflow.com/questions/10878731/utf8-console-log-output-using-node-js 
 	} // -- consoleTemplate() 
 
 function requireTemplate( ... ar ) { 
