@@ -35,7 +35,7 @@ openLogFile
 	.catch( err => { 
 		console .log( 'error', err ) 
 		process .exit() 
-		} ) // -- () // -- then 
+		} ) // -- () // -- catch 
 
 // exit < process < nodejs https://nodejs.org/api/process.html#process_process_exit_code 
 // process .exit() 
@@ -54,7 +54,7 @@ function yymmdd( dateValue ) {
 		} // -- {} // -- dateFormat 
 	let nowDateParts 
 		= new Intl .DateTimeFormat( locale, dateFormat ) 
-		.formatToParts( now ) 
+		.formatToParts( dateValue ) 
 		// -- nowDateParts 
 	let reducedDate 
 		= Object .assign( ... nowDateParts .map( ({ type, value }) => 
@@ -77,7 +77,7 @@ function hhmmss( timeValue ) {
 		} // -- {} // -- timeFormat 
 	let nowTimeParts 
 		= new Intl .DateTimeFormat( locale, timeFormat ) 
-		.formatToParts( now ) 
+		.formatToParts( timeValue ) 
 		// -- nowTimeParts 
 	let reducedTime 
 		= Object .assign( ... nowTimeParts .map( ({ type, value }) => 
