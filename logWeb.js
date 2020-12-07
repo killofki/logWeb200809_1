@@ -58,6 +58,7 @@ function getParsedDate( dateValue, dateFormat ) {
 			({ [ type ] : value }) 
 			) ) // -- () // -- map // -- assign 
 		// -- reducedDate 
+	
 	return reducedDate 
 	} // -- yymmdd() 
 
