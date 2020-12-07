@@ -113,7 +113,7 @@ function execTemplate( ... ar ) {
 
 function consoleTemplate( ... ar ) { 
 	let t = rawValue( ... ar ) 
-	console .log( t, encodeURI( t, { encoding : 'binary' } ) ) 
+	console .log( t, encodeURI( t ) ) 
 	let ec = encode( t, 'euc-kr' ) 
 	
 	let dc = ec .toString `binary` 
