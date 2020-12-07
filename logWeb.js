@@ -48,10 +48,7 @@ openLogFile
 // DateTimeFormat < Intl https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat 
 // formatToParts < dateTimeFormat < Intl https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/formatToParts 
 
-function yymmdd( dateValue ) { 
-	let dateFormat = new class { 
-		dateStyle = 'short' 
-		} // -- {} // -- dateFormat 
+function getParsedDate( dateValue, dateFormat ) { 
 	let nowDateParts 
 		= new Intl .DateTimeFormat( locale, dateFormat ) 
 		.formatToParts( dateValue ) 
@@ -61,7 +58,14 @@ function yymmdd( dateValue ) {
 			({ [ type ] : value }) 
 			) ) // -- () // -- map // -- assign 
 		// -- reduceDate 
-	let { year, month, day } = reducedDate 
+	return reducedDate 
+	} // -- yymmdd() 
+
+function yymmdd( dateValue ) { 
+	let dateFormat = new class { 
+		dateStyle = 'short' 
+		} // -- {} // -- dateFormat 
+	let { year, month, day } = getParsedDate( dateValue, dateFormat ) 
 	
 	let twos = v => `00${ v }` .slice( -2 ) 
 	let [ yy, mm, dd ] = [ year, month, day ] .map( twos ) 
@@ -75,16 +79,7 @@ function hhmmss( timeValue ) {
 		// hour12 = false 
 		hourCycle = 'h23' 
 		} // -- {} // -- timeFormat 
-	let nowTimeParts 
-		= new Intl .DateTimeFormat( locale, timeFormat ) 
-		.formatToParts( timeValue ) 
-		// -- nowTimeParts 
-	let reducedTime 
-		= Object .assign( ... nowTimeParts .map( ({ type, value }) => 
-			({ [ type ] : value }) 
-			) ) // -- () // -- map // -- assign 
-		// -- reducedTime 
-	let { hour, minute, second } = reducedTime 
+	let { hour, minute, second } = getParsedDate( timeValue, timeFormat ) 
 	
 	let twos = v => `00${ v }` .slice( -2 ) 
 	let [ hh, mm, ss ] = [ hour, minute, second ] .map( twos ) 
