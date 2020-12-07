@@ -50,10 +50,9 @@ openLogFile
 
 function getParsedDate( dateValue, dateFormat ) { 
 	// with locale 
-	let nowDateParts 
-		= new Intl .DateTimeFormat( locale, dateFormat ) 
-		.formatToParts( dateValue ) 
-		// -- nowDateParts 
+	let former = new Intl .DateTimeFormat( locale, dateFormat ) 
+	let nowDateParts = former .formatToParts( dateValue ) 
+	
 	let typedValue = ({ type, value }) => ({ [ type ] : value }) 
 	let reducedDate = Object .assign( ... nowDateParts .map( typedValue ) ) 
 	
