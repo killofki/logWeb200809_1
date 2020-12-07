@@ -57,7 +57,7 @@ function getParsedDate( dateValue, dateFormat ) {
 		= Object .assign( ... nowDateParts .map( ({ type, value }) => 
 			({ [ type ] : value }) 
 			) ) // -- () // -- map // -- assign 
-		// -- reduceDate 
+		// -- reducedDate 
 	return reducedDate 
 	} // -- yymmdd() 
 
