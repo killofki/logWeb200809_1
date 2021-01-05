@@ -20,11 +20,11 @@ console .log({ openingFile })
 openingFile 
 	.then( handle => { 
 		console .log({ fileName }) 
-		console .log( 'opened', handle ) 
+		console .log( '<opened>', handle ) 
 		process .exit() 
 		} ) // -- () // -- then 
 	.catch( err => { 
-		console .log( 'error', err ) 
+		console .log( '!!!error!!!', err ) 
 		process .exit() 
 		} ) // -- () // -- catch 
 	// -- openingFile 
