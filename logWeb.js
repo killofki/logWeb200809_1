@@ -1,17 +1,18 @@
 { 
 /// 
 
+let locale = 'ko-kr' 
+
 console .log( '... initializing ...' ) 
 
 let process = requireTemplate `process` 
 let child_process = requireTemplate `child_process` 
+
 // File system < nodejs https://nodejs.org/api/fs.html 
 let fs = requireTemplate `fs` 
 let { promises } = fs 
 
 consoleTemplate `require ..d 가힣 가 나 다 ` 
-
-let locale = 'ko-kr' 
 
 let [ openingFile, fileName ] = openToday `logWeb` 
 console .log({ openingFile }) 
@@ -61,7 +62,9 @@ function getParsedDate( dateValue, dateFormat ) {
 	let former = new Intl .DateTimeFormat( locale, dateFormat ) 
 	let nowDateParts = former .formatToParts( dateValue ) 
 	
-	let typedValue = ({ type, value }) => ({ [ type ] : value }) 
+	let typedValue = ({ type, value }) => 
+		({ [ type ] : value }) 
+		// -- typedValue() 
 	let reducedDate = Object .assign( ... nowDateParts .map( typedValue ) ) 
 	
 	return reducedDate 
