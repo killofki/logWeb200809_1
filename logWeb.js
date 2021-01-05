@@ -7,28 +7,18 @@ let process = requireTemplate `process`
 let child_process = requireTemplate `child_process` 
 // File system < nodejs https://nodejs.org/api/fs.html 
 let fs = requireTemplate `fs` 
-let pfs = fs .promises 
+let { promises } = fs 
 
 consoleTemplate `require ..d 가힣 가 나 다 ` 
 
 let locale = 'ko-kr' 
 
-let now = new Date() 
-let publishingDate = yymmdd( now ) 
-let publishingTime = hhmmss( now ) 
+let [ openingFile, fileName ] = openToday `logWeb` 
+console .log({ openingFile }) 
 
-console .log({ publishingDate, publishingTime }) 
-
-let publishingFilename = `logWeb${ publishingDate }_${ publishingTime }.txt` 
-
-/// openSync < fs < nodejs 
-let openLogFile = pfs .open( publishingFilename, 'a+' ) 
-
-console .log({ openLogFile }) 
-
-openLogFile 
+openingFile 
 	.then( handle => { 
-		console .log({ publishingFilename }) 
+		console .log({ fileName }) 
 		console .log( 'opened', handle ) 
 		process .exit() 
 		} ) // -- () // -- then 
@@ -36,7 +26,7 @@ openLogFile
 		console .log( 'error', err ) 
 		process .exit() 
 		} ) // -- () // -- catch 
-	// -- openLogFile 
+	// -- openingFile 
 
 // exit < process < nodejs https://nodejs.org/api/process.html#process_process_exit_code 
 // process .exit() 
@@ -45,6 +35,23 @@ openLogFile
 // execTemplate `start http://google.com` 
 
 // .. functions .. 
+
+function openToday( ... ar ) { 
+	let openName = rawValue( ... ar ) || 'logWeb' 
+	
+	let now = new Date() 
+	let publishingDate = yymmdd( now ) 
+	let publishingTime = hhmmss( now ) 
+	
+	console .log( 'openToday()', { publishingDate, publishingTime } ) 
+	
+	let publishingFilename = `logWeb${ publishingDate }_${ publishingTime }.txt` 
+	
+	/// openSync < fs < nodejs 
+	let openLogFile = promises .open( publishingFilename, 'a+' ) 
+	
+	return [ openLogFile, publishingFilename ] 
+	} // -- openToday() 
 
 // DateTimeFormat < Intl https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat 
 // formatToParts < dateTimeFormat < Intl https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/formatToParts 
