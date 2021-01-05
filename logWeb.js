@@ -36,6 +36,7 @@ openLogFile
 		console .log( 'error', err ) 
 		process .exit() 
 		} ) // -- () // -- catch 
+	// -- openLogFile 
 
 // exit < process < nodejs https://nodejs.org/api/process.html#process_process_exit_code 
 // process .exit() 
