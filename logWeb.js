@@ -3,7 +3,7 @@
 
 let locale = 'ko-kr' 
 
-console .log( '... initializing ...' ) 
+consoleTemplate `... initializing ...` 
 
 let process = requireTemplate `process` 
 let child_process = requireTemplate `child_process` 
