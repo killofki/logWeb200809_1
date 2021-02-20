@@ -50,7 +50,7 @@ function getParsedDate( dateValue, dateFormat ) {
 	let reducedDate = Object .assign( ... nowDateParts .map( typedValue ) ) 
 	
 	return reducedDate 
-	} // -- getPrasedDate() 
+	} // -- getParsedDate() 
 
 let twos = v => `00${ v }` .slice( -2 ) 
 
