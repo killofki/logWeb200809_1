@@ -27,8 +27,6 @@ function openToday( ... ar ) {
 	let publishingDate = yymmdd( now ) 
 	let publishingTime = hhmmss( now ) 
 	
-	console .log( 'openToday()', { publishingDate, publishingTime } ) 
-	
 	let publishingFilename = `logWeb${ publishingDate }_${ publishingTime }.txt` 
 	
 	/// openSync < fs < nodejs 
