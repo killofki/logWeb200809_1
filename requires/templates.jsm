@@ -13,6 +13,8 @@ function execTemplate( ... ar ) {
 	let command = rawValue( ... ar ) 
 	child_process .exec( command ) 
 	} // -- execTemplate() 
+/// exec < child_process < nodejs https://nodejs.org/api/child_process.html#child_process_child_process_exec_command_options_callback 
+// execTemplate `start http://google.com` 
 
 function consoleTemplate( ... ar ) { 
 	let t = rawValue( ... ar ) 

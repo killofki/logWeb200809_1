@@ -16,7 +16,6 @@ console .log( templates )
 consoleTemplate `... initializing ...` 
 
 let process = requireTemplate `process` 
-let child_process = requireTemplate `child_process` 
 
 // File system < nodejs https://nodejs.org/api/fs.html 
 let fs = requireTemplate `fs` 
@@ -34,9 +33,6 @@ openingFile
 
 // exit < process < nodejs https://nodejs.org/api/process.html#process_process_exit_code 
 // process .exit() 
-
-/// exec < child_process < nodejs https://nodejs.org/api/child_process.html#child_process_child_process_exec_command_options_callback 
-// execTemplate `start http://google.com` 
 
 // .. functions .. 
 
