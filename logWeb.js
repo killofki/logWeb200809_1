@@ -23,10 +23,7 @@ openingFile
 		console .log( '<opened>', handle ) 
 		process .exit() 
 		} ) // -- () // -- then 
-	.catch( err => { 
-		console .log( '!!!error!!!', err ) 
-		process .exit() 
-		} ) // -- () // -- catch 
+	.catch( aboutError ) 
 	// -- openingFile 
 
 // exit < process < nodejs https://nodejs.org/api/process.html#process_process_exit_code 
@@ -36,6 +33,11 @@ openingFile
 // execTemplate `start http://google.com` 
 
 // .. functions .. 
+
+function aboutError( err ) { 
+	console .log( '!!!error!!!', err ) 
+	process .exit() 
+	} // -- aboutError() 
 
 function openToday( ... ar ) { 
 	let openName = rawValue( ... ar ) || 'logWeb' 
