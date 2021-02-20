@@ -52,10 +52,11 @@ function getParsedDate( dateValue, dateFormat ) {
 	return reducedDate 
 	} // -- yymmdd() 
 
+let dateFormat = new class { 
+	dateStyle = 'short' 
+	} // -- {} // -- dateFormat 
+
 function yymmdd( dateValue ) { 
-	let dateFormat = new class { 
-		dateStyle = 'short' 
-		} // -- {} // -- dateFormat 
 	let { year, month, day } = getParsedDate( dateValue, dateFormat ) 
 	
 	let twos = v => `00${ v }` .slice( -2 ) 
@@ -64,12 +65,13 @@ function yymmdd( dateValue ) {
 	return `${ yy }${ mm }${ dd }` 
 	} // -- yymmdd() 
 
+let timeFormat = new class { 
+	timeStyle = 'medium' 
+	// hour12 = false 
+	hourCycle = 'h23' 
+	} // -- {} // -- timeFormat 
+
 function hhmmss( timeValue ) { 
-	let timeFormat = new class { 
-		timeStyle = 'medium' 
-		// hour12 = false 
-		hourCycle = 'h23' 
-		} // -- {} // -- timeFormat 
 	let { hour, minute, second } = getParsedDate( timeValue, timeFormat ) 
 	
 	let twos = v => `00${ v }` .slice( -2 ) 
