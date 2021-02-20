@@ -1,7 +1,10 @@
 { 
 /// 
 
-let templates = require( './requires/templates.jsm' ) 
+let 
+	{ templates 
+	, times 
+	} = require( './requires' ) 
 
 let 
 	{ execTemplate 
@@ -9,8 +12,6 @@ let
 	, requireTemplate 
 	, rawValue 
 	} = templates 
-
-let times = requireTemplate `./times.jsm` 
 
 let 
 	{ getParsedDate 
