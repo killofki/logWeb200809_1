@@ -44,7 +44,6 @@ Object .assign
 		, rawValue 
 		} 
 	) // -- assign 
-console .log( module ) 
 
 /// 
 } 
