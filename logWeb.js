@@ -18,11 +18,7 @@ let [ openingFile, fileName ] = openToday `logWeb`
 console .log({ openingFile }) 
 
 openingFile 
-	.then( handle => { 
-		console .log({ fileName }) 
-		console .log( '<opened>', handle ) 
-		process .exit() 
-		} ) // -- () // -- then 
+	.then( onOpened ) 
 	.catch( aboutError ) 
 	// -- openingFile 
 
@@ -33,6 +29,12 @@ openingFile
 // execTemplate `start http://google.com` 
 
 // .. functions .. 
+
+function onOpened( handle ) { 
+	console .log({ fileName }) 
+	console .log( '<opened>', handle ) 
+	process .exit() 
+	} // -- onOpened() 
 
 function aboutError( err ) { 
 	console .log( '!!!error!!!', err ) 
