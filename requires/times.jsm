@@ -4,6 +4,10 @@ module ??= {}
 { 
 /// 
 
+let exports = {} 
+
+let locale = 'ko-kr' 
+
 let templates = require( './templates.jsm' ) 
 
 let 
@@ -14,10 +18,6 @@ let
 // File system < nodejs https://nodejs.org/api/fs.html 
 let fs = requireTemplate `fs` 
 let { promises } = fs 
-
-let exports = {} 
-
-let locale = 'ko-kr' 
 
 function openToday( ... ar ) { 
 	let openName = rawValue( ... ar ) || 'logWeb' 
