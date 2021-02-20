@@ -3,6 +3,16 @@
 
 let locale = 'ko-kr' 
 
+let templates = require( './requires/templates.jsm' ) 
+
+let 
+	{ execTemplate 
+	, consoleTemplate 
+	, requireTemplate 
+	, rawValue 
+	} = templates 
+
+console .log( templates ) 
 consoleTemplate `... initializing ...` 
 
 let process = requireTemplate `process` 
@@ -99,29 +109,6 @@ function hhmmss( timeValue ) {
 	
 	return `${ hh }${ mm }${ ss }` 
 	} // -- hhmmsss() 
-
-function execTemplate( ... ar ) { 
-	// with child_process 
-	let command = rawValue( ... ar ) 
-	child_process .exec( command ) 
-	} // -- execTemplate() 
-
-function consoleTemplate( ... ar ) { 
-	let t = rawValue( ... ar ) 
-	console .log( t ) 
-	// chcp 65001 on cmd https://stackoverflow.com/questions/10878731/utf8-console-log-output-using-node-js 
-	} // -- consoleTemplate() 
-
-function requireTemplate( ... ar ) { 
-	let filename = rawValue( ... ar ) 
-	return require( filename ) 
-	} // -- requireTemplate() 
-
-function rawValue( ... ar ) { 
-	let [ rawo ] = ar 
-	return rawo ?.raw ? String .raw( ... ar ) 
-		: rawo 
-	} // -- rawValue() 
 
 /// 
 }

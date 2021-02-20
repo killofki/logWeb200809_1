@@ -1,7 +1,10 @@
-var module ??= {} 
+var module 
+module ??= {} 
 
 { 
 /// 
+
+let child_process = requireTemplate `child_process` 
 
 let exports = {} 
 
@@ -31,7 +34,7 @@ function rawValue( ... ar ) {
 Object .assign( module, { exports } ) 
 
 Object .assign 
-	( module 
+	( exports 
 	, 
 		{ execTemplate 
 		, consoleTemplate 
@@ -39,6 +42,7 @@ Object .assign
 		, rawValue 
 		} 
 	) // -- assign 
+console .log( module ) 
 
 /// 
 } 
