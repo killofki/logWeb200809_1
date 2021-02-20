@@ -7,6 +7,7 @@ module ??= {}
 let exports = {} 
 let path = require( 'path' ) 
 
+// https://stackoverflow.com/questions/5364928/node-js-require-all-files-in-a-folder 
 for ( let name of require( 'fs' ) .readdirSync( path .join( __dirname ) ) ) { 
 	let matching = name .match( /^(.*?)\.jsm$/ ) 
 	if ( ! matching ) 
