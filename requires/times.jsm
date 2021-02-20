@@ -4,9 +4,39 @@ module ??= {}
 { 
 /// 
 
+let templates = require( './templates.jsm' ) 
+
+let 
+	{ rawValue 
+	, requireTemplate 
+	} = templates 
+
+let fs = requireTemplate `fs` 
+let { promises } = fs 
+
 let exports = {} 
 
 let locale = 'ko-kr' 
+
+function openToday( ... ar ) { 
+	let openName = rawValue( ... ar ) || 'logWeb' 
+	
+	let now = new Date() 
+	let publishingDate = yymmdd( now ) 
+	let publishingTime = hhmmss( now ) 
+	
+	console .log( 'openToday()', { publishingDate, publishingTime } ) 
+	
+	let publishingFilename = `logWeb${ publishingDate }_${ publishingTime }.txt` 
+	
+	/// openSync < fs < nodejs 
+	let openLogFile = promises .open( publishingFilename, 'a+' ) 
+	
+	return [ openLogFile, publishingFilename ] 
+	} // -- openToday() 
+
+// DateTimeFormat < Intl https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat 
+// formatToParts < dateTimeFormat < Intl https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/formatToParts 
 
 function getParsedDate( dateValue, dateFormat ) { 
 	// with locale 
@@ -51,7 +81,8 @@ Object .assign( module, { exports } )
 Object .assign 
 	( exports 
 	, 
-		{ getParsedDate 
+		{ openToday 
+		, getParsedDate 
 		, yymmdd 
 		, hhmmss 
 		} 
