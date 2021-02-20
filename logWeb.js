@@ -12,7 +12,6 @@ let
 	, rawValue 
 	} = templates 
 
-console .log( templates ) 
 consoleTemplate `... initializing ...` 
 
 let process = requireTemplate `process` 
