@@ -33,6 +33,13 @@ function rawValue( ... ar ) {
 		: rawo 
 	} // -- rawValue() 
 
+function twosTemplate( ... ar ) { 
+	let [ rawo, ... others ] = ar 
+	let toTwo = others .map( t => `00${ t }` .slice( -2 ) ) 
+	return rawo ?.raw ? String .raw( rawo, ... toTwo ) 
+		: `00${ rawo }` .slice( -2 ) 
+	} // -- twosTemplate() 
+
 Object .assign( module, { exports } ) 
 
 Object .assign 
@@ -42,6 +49,7 @@ Object .assign
 		, consoleTemplate 
 		, requireTemplate 
 		, rawValue 
+		, twosTemplate 
 		} 
 	) // -- assign 
 

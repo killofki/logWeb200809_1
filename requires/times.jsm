@@ -13,6 +13,7 @@ let templates = require( './templates.jsm' )
 let 
 	{ rawValue 
 	, requireTemplate 
+	, twosTemplate 
 	} = templates 
 
 // File system < nodejs https://nodejs.org/api/fs.html 
@@ -52,17 +53,14 @@ function getParsedDate( dateValue, dateFormat ) {
 	return reducedDate 
 	} // -- getParsedDate() 
 
-let twos = v => `00${ v }` .slice( -2 ) 
-
 let dateFormat = new class { 
 	dateStyle = 'short' 
 	} // -- {} // -- dateFormat 
 
 function yymmdd( dateValue ) { 
 	let { year, month, day } = getParsedDate( dateValue, dateFormat ) 
-	let [ yy, mm, dd ] = [ year, month, day ] .map( twos ) 
 	
-	return `${ yy }${ mm }${ dd }` 
+	return twosTemplate `${ year }${ month }${ day }` 
 	} // -- yymmdd() 
 
 let timeFormat = new class { 
@@ -73,9 +71,8 @@ let timeFormat = new class {
 
 function hhmmss( timeValue ) { 
 	let { hour, minute, second } = getParsedDate( timeValue, timeFormat ) 
-	let [ hh, mm, ss ] = [ hour, minute, second ] .map( twos ) 
 	
-	return `${ hh }${ mm }${ ss }` 
+	return twosTemplate `${ hour }${ minute }${ second }` 
 	} // -- hhmmsss() 
 
 Object .assign( module, { exports } ) 
