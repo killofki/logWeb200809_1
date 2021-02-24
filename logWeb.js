@@ -7,18 +7,11 @@ let
 	} = require( './requires' ) 
 
 let 
-	{ execTemplate 
-	, consoleTemplate 
+	{ consoleTemplate 
 	, requireTemplate 
-	, rawValue 
 	} = templates 
 
-let 
-	{ openToday 
-	, getParsedDate 
-	, yymmdd 
-	, hhmmss 
-	} = times 
+let { openToday } = times 
 
 consoleTemplate `... initializing ...` 
 

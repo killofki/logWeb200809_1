@@ -73,6 +73,8 @@ function hhmmss( timeValue ) {
 	return twosTemplate `${ hour }${ minute }${ second }` 
 	} // -- hhmmsss() 
 
+// exports 
+
 Object .assign( module, { exports } ) 
 Object .assign 
 	( exports 
