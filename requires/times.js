@@ -8,16 +8,15 @@ let exports = {}
 
 let locale = 'ko-kr' 
 
-let templates = require( './templates.jsm' ) 
+let templates = require( './templates.js' ) 
 
 let 
 	{ rawValue 
-	, requireTemplate 
 	, twosTemplate 
 	} = templates 
 
 // File system < nodejs https://nodejs.org/api/fs.html 
-let fs = requireTemplate `fs` 
+let fs = require( 'fs' ) 
 let { promises } = fs 
 
 function openToday( ... ar ) { 
