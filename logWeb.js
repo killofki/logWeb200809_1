@@ -33,6 +33,7 @@ function onOpened( handle ) {
 	console .log({ fileName }) 
 	console .log( '<opened>', handle ) 
 	handle .appendFile( '가힣' ) 
+	handle .appendFile( '가힣' ) 
 	process .exit() 
 	} // -- onOpened() 
 
