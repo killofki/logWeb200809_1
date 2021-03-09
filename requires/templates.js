@@ -4,7 +4,7 @@ module ??= {}
 { 
 /// 
 
-let child_process = requireTemplate `child_process` 
+let child_process = require( 'child_process' ) 
 
 let exports = {} 
 
@@ -21,11 +21,6 @@ function consoleTemplate( ... ar ) {
 	console .log( t ) 
 	// chcp 65001 on cmd https://stackoverflow.com/questions/10878731/utf8-console-log-output-using-node-js 
 	} // -- consoleTemplate() 
-
-function requireTemplate( ... ar ) { 
-	let filename = rawValue( ... ar ) 
-	return require( filename ) 
-	} // -- requireTemplate() 
 
 function rawValue( ... ar ) { 
 	let [ rawo ] = ar 
@@ -47,7 +42,6 @@ Object .assign
 	, 
 		{ execTemplate 
 		, consoleTemplate 
-		, requireTemplate 
 		, rawValue 
 		, twosTemplate 
 		} 

@@ -6,23 +6,13 @@ let
 	, times 
 	} = require( './requires' ) 
 
-let 
-	{ execTemplate 
-	, consoleTemplate 
-	, requireTemplate 
-	, rawValue 
-	} = templates 
+let { consoleTemplate } = templates 
 
-let 
-	{ openToday 
-	, getParsedDate 
-	, yymmdd 
-	, hhmmss 
-	} = times 
+let { openToday } = times 
 
 consoleTemplate `... initializing ...` 
 
-let process = requireTemplate `process` 
+let process = require( 'process' ) 
 
 consoleTemplate `require ..d 가힣 가 나 다 ` 
 

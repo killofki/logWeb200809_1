@@ -4,20 +4,23 @@ module ??= {}
 { 
 /// 
 
-let exports = {} 
+let fs = require( 'fs' ) 
 let path = require( 'path' ) 
 
+let templates = require( './templates' ) 
+let { rawValue } = templates 
+
 // https://stackoverflow.com/questions/5364928/node-js-require-all-files-in-a-folder 
-for ( let name of require( 'fs' ) .readdirSync( path .join( __dirname ) ) ) { 
-	let matching = name .match( /^(.*?)\.jsm$/ ) 
-	if ( ! matching ) 
-		{ continue } 
-	let [, exportName ] = matching 
-	let requirePath = path .join( __dirname, name ) 
-	let value = require( requirePath ) 
+
+function folderRequire( ... ar ) { 
+	let t = rawValue( ... ar ) 
 	
-	exports [ exportName ] = value 
-	} // -- for of readdirSync 
+	return require( path .join( __dirname, t ) ) 
+	} // -- folderRequire() 
+
+let get = ( F, p ) => folderRequire( p ) 
+
+let exports = new Proxy( folderRequire, { get } ) 
 
 Object .assign( module, { exports } ) 
 
