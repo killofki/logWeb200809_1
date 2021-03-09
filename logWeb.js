@@ -4,7 +4,7 @@
 console .log( '... initializing ...' ) 
 
 let process = requireTemplate `process` 
-let cp = requireTemplate `child_process` 
+let child_process = requireTemplate `child_process` 
 // File system < nodejs https://nodejs.org/api/fs.html 
 let fs = requireTemplate `fs` 
 let pfs = fs .promises 
@@ -31,11 +31,11 @@ openLogFile
 		console .log({ publishingFilename }) 
 		console .log( 'opened', handle ) 
 		process .exit() 
-		} ) 
+		} ) // -- () // -- then 
 	.catch( err => { 
 		console .log( 'error', err ) 
 		process .exit() 
-		} ) 
+		} ) // -- () // -- catch 
 
 // exit < process < nodejs https://nodejs.org/api/process.html#process_process_exit_code 
 // process .exit() 
@@ -48,28 +48,25 @@ openLogFile
 // DateTimeFormat < Intl https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat 
 // formatToParts < dateTimeFormat < Intl https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/formatToParts 
 
+function getParsedDate( dateValue, dateFormat ) { 
+	// with locale 
+	let former = new Intl .DateTimeFormat( locale, dateFormat ) 
+	let nowDateParts = former .formatToParts( dateValue ) 
+	
+	let typedValue = ({ type, value }) => ({ [ type ] : value }) 
+	let reducedDate = Object .assign( ... nowDateParts .map( typedValue ) ) 
+	
+	return reducedDate 
+	} // -- yymmdd() 
+
 function yymmdd( dateValue ) { 
 	let dateFormat = new class { 
 		dateStyle = 'short' 
 		} // -- {} // -- dateFormat 
-	let nowDateParts = new Intl .DateTimeFormat( locale, dateFormat ) .formatToParts( now ) 
-	let y, m, d 
+	let { year, month, day } = getParsedDate( dateValue, dateFormat ) 
 	
-	for ( let { type, value } of nowDateParts ) { 
-		switch( true ) { 
-			case type === 'year' : 
-				y = value 
-				break 
-			case type === 'month' : 
-				m = value 
-				break 
-			case type === 'day' : 
-				d = value 
-				break 
-			} // -- switch true 
-		} // -- for of nowDateParts 
 	let twos = v => `00${ v }` .slice( -2 ) 
-	let [ yy, mm, dd ] = [ y, m, d ] .map( twos ) 
+	let [ yy, mm, dd ] = [ year, month, day ] .map( twos ) 
 	
 	return `${ yy }${ mm }${ dd }` 
 	} // -- yymmdd() 
@@ -80,32 +77,18 @@ function hhmmss( timeValue ) {
 		// hour12 = false 
 		hourCycle = 'h23' 
 		} // -- {} // -- timeFormat 
-	let nowTimeParts = new Intl .DateTimeFormat( locale, timeFormat ) .formatToParts( now ) 
-	let h, m, s 
+	let { hour, minute, second } = getParsedDate( timeValue, timeFormat ) 
 	
-	for ( let { type, value } of nowTimeParts ) { 
-		switch( true ) { 
-			case type === 'hour' : 
-				h = value 
-				break 
-			case type === 'minute' : 
-				m = value 
-				break 
-			case type === 'second' : 
-				s = value 
-				break 
-			} // -- switch true 
-		} // -- for of nowTimeParts 
 	let twos = v => `00${ v }` .slice( -2 ) 
-	let [ hh, mm, ss ] = [ h, m, s ] .map( twos ) 
+	let [ hh, mm, ss ] = [ hour, minute, second ] .map( twos ) 
 	
 	return `${ hh }${ mm }${ ss }` 
 	} // -- hhmmsss() 
 
 function execTemplate( ... ar ) { 
-	// with cp 
+	// with child_process 
 	let command = rawValue( ... ar ) 
-	cp .exec( command ) 
+	child_process .exec( command ) 
 	} // -- execTemplate() 
 
 function consoleTemplate( ... ar ) { 
