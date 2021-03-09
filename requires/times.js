@@ -8,7 +8,7 @@ let exports = {}
 
 let locale = 'ko-kr' 
 
-let templates = require( './templates.js' ) 
+let templates = require( './templates' ) 
 
 let 
 	{ rawValue 
