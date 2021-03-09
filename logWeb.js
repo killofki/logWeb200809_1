@@ -1,41 +1,33 @@
 { 
 /// 
 
-console .log( '... initializing ...' ) 
+let locale = 'ko-kr' 
+
+consoleTemplate `... initializing ...` 
 
 let process = requireTemplate `process` 
 let child_process = requireTemplate `child_process` 
+
 // File system < nodejs https://nodejs.org/api/fs.html 
 let fs = requireTemplate `fs` 
-let pfs = fs .promises 
+let { promises } = fs 
 
 consoleTemplate `require ..d 가힣 가 나 다 ` 
 
-let locale = 'ko-kr' 
+let [ openingFile, fileName ] = openToday `logWeb` 
+console .log({ openingFile }) 
 
-let now = new Date() 
-let publishingDate = yymmdd( now ) 
-let publishingTime = hhmmss( now ) 
-
-console .log({ publishingDate, publishingTime }) 
-
-let publishingFilename = `logWeb${ publishingDate }_${ publishingTime }.txt` 
-
-/// openSync < fs < nodejs 
-let openLogFile = pfs .open( publishingFilename, 'a+' ) 
-
-console .log({ openLogFile }) 
-
-openLogFile 
+openingFile 
 	.then( handle => { 
-		console .log({ publishingFilename }) 
-		console .log( 'opened', handle ) 
+		console .log({ fileName }) 
+		console .log( '<opened>', handle ) 
 		process .exit() 
 		} ) // -- () // -- then 
 	.catch( err => { 
-		console .log( 'error', err ) 
+		console .log( '!!!error!!!', err ) 
 		process .exit() 
 		} ) // -- () // -- catch 
+	// -- openingFile 
 
 // exit < process < nodejs https://nodejs.org/api/process.html#process_process_exit_code 
 // process .exit() 
@@ -45,6 +37,23 @@ openLogFile
 
 // .. functions .. 
 
+function openToday( ... ar ) { 
+	let openName = rawValue( ... ar ) || 'logWeb' 
+	
+	let now = new Date() 
+	let publishingDate = yymmdd( now ) 
+	let publishingTime = hhmmss( now ) 
+	
+	console .log( 'openToday()', { publishingDate, publishingTime } ) 
+	
+	let publishingFilename = `logWeb${ publishingDate }_${ publishingTime }.txt` 
+	
+	/// openSync < fs < nodejs 
+	let openLogFile = promises .open( publishingFilename, 'a+' ) 
+	
+	return [ openLogFile, publishingFilename ] 
+	} // -- openToday() 
+
 // DateTimeFormat < Intl https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat 
 // formatToParts < dateTimeFormat < Intl https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/formatToParts 
 
@@ -53,7 +62,9 @@ function getParsedDate( dateValue, dateFormat ) {
 	let former = new Intl .DateTimeFormat( locale, dateFormat ) 
 	let nowDateParts = former .formatToParts( dateValue ) 
 	
-	let typedValue = ({ type, value }) => ({ [ type ] : value }) 
+	let typedValue = ({ type, value }) => 
+		({ [ type ] : value }) 
+		// -- typedValue() 
 	let reducedDate = Object .assign( ... nowDateParts .map( typedValue ) ) 
 	
 	return reducedDate 
