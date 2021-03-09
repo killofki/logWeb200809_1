@@ -9,7 +9,7 @@ let cp = requireTemplate `child_process`
 let fs = requireTemplate `fs` 
 let pfs = fs .promises 
 
-consoleTemplate `require ..d 가힣 ` 
+consoleTemplate `require ..d 가힣 가 나 다 ` 
 
 let locale = 'ko-kr' 
 
@@ -111,6 +111,7 @@ function execTemplate( ... ar ) {
 function consoleTemplate( ... ar ) { 
 	let t = rawValue( ... ar ) 
 	console .log( t ) 
+	// chcp 65001 on cmd https://stackoverflow.com/questions/10878731/utf8-console-log-output-using-node-js 
 	} // -- consoleTemplate() 
 
 function requireTemplate( ... ar ) { 
