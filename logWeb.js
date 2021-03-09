@@ -1,11 +1,13 @@
 { 
 /// 
 
-consoleTemplate `require ..ing 가나 ` 
+console .log( '... initializing ...' ) 
 
 let process = requireTemplate `process` 
 let cp = requireTemplate `child_process` 
+// File system < nodejs https://nodejs.org/api/fs.html 
 let fs = requireTemplate `fs` 
+let pfs = fs .promises 
 
 consoleTemplate `require ..d 가힣 ` 
 
@@ -16,6 +18,24 @@ let publishingDate = yymmdd( now )
 let publishingTime = hhmmss( now ) 
 
 console .log({ publishingDate, publishingTime }) 
+
+let publishingFilename = `logWeb${ publishingDate }_${ publishingTime }.txt` 
+
+/// openSync < fs < nodejs 
+let openLogFile = pfs .open( publishingFilename, 'a+' ) 
+
+console .log({ openLogFile }) 
+
+openLogFile 
+	.then( handle => { 
+		console .log({ publishingFilename }) 
+		console .log( 'opened', handle ) 
+		process .exit() 
+		} ) 
+	.catch( err => { 
+		console .log( 'error', err ) 
+		process .exit() 
+		} ) 
 
 // exit < process < nodejs https://nodejs.org/api/process.html#process_process_exit_code 
 // process .exit() 
